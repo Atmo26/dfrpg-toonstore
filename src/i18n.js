@@ -8,7 +8,7 @@ var global = require('./global.js');
 
 // the translation middleware
 var config = {
-	locales: ['en-US','pt-BR'],
+	locales: ['en-US','pt-BR','cs-CZ'],
 	defaultLocale: 'en-US',
 	directory: libpath.resolve(__dirname,'..','locales'),
 	extension: '.json',
@@ -70,6 +70,8 @@ exports.detect = function(req,res,next)
 		// render in default lang
 		res.i18n.selectedLocale = config.defaultLocale;
 	}
+
+	res.setHeader("Content-Language", res.i18n.selectedLocale);
 
 	next();
 };
